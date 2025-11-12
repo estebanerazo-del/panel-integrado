@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Integrado</title>
+  <style>
+    body { font-family: Arial; margin: 0; background: #f5f5f5; }
+    .tabs { display: flex; background: #333; }
+    .tabs button {
+      flex: 1;
+      padding: 14px;
+      color: white;
+      background: #444;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .tabs button.active { background: #0078ff; }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 48px);
+      border: none;
+      display: none;
+    }
+    iframe.active { display: block; }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="active" onclick="showTab(0)">n8n</button>
+    <button onclick="showTab(1)">Otra App</button>
+  </div>
+
+  <iframe src="https://n8n-service-hbi4.onrender.com" class="active"></iframe>
+  <iframe src="https://ejemplo.onrender.com"></iframe>
+
+  <script>
+    function showTab(index) {
+      const iframes = document.querySelectorAll('iframe');
+      const buttons = document.querySelectorAll('.tabs button');
+      iframes.forEach((f, i) => f.classList.toggle('active', i === index));
+      buttons.forEach((b, i) => b.classList.toggle('active', i === index));
+    }
+  </script>
+</body>
+</html>
